@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
 
     if (path) {
         console.log('Revalidating path:', path)
-        revalidatePath(path)
+        revalidatePath("/")
         return Response.json({ revalidated: true, now: Date.now() })
     }
 
