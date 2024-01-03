@@ -2,7 +2,7 @@ import { revalidatePath } from 'next/cache'
 import { NextRequest } from 'next/server'
 
 export async function POST(request: NextRequest) {
-    const { body } = await request.json()
+    const body = await request.json()
     const path = `/${body?.record?.id || body?.old_record?.id}`
 
     if (path) {
