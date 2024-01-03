@@ -8,12 +8,13 @@ export async function POST(request: NextRequest) {
     if (path) {
         console.log('Revalidating path:', path)
         revalidatePath(path)
-        return Response.json({ revalidated: true, now: Date.now() })
+        //revalidatePath('/', 'layout')
+        return Response.json({ revalidated: true, time: Date.now(), body: request.body, path: `${path}` })
     }
 
     return Response.json({
         revalidated: false,
-        now: Date.now(),
+        time: Date.now(),
         message: 'Missing path to revalidate',
     })
 }
