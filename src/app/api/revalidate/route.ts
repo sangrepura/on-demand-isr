@@ -2,8 +2,8 @@ import { revalidatePath } from 'next/cache'
 import { NextRequest } from 'next/server'
 
 export async function POST(request: NextRequest) {
-    console.log('Revalidate request:', request)
-    const path = `/${(request.body?.record?.id || request.body?.old_record?.id}`
+    const body = await request.json()
+    const path = `/${(body?.record?.id || body?.old_record?.id)}`
 
     if (path) {
         console.log('Revalidating path:', path)
