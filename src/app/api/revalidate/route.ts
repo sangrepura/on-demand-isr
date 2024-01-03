@@ -2,6 +2,7 @@ import { revalidatePath } from 'next/cache'
 import { NextRequest } from 'next/server'
 
 export async function POST(request: NextRequest) {
+    console.log('Revalidate request:', request)
     const path = `/${(request.body as { record?: { id: string }, old_record?: { id: string } })?.record?.id || (request.body as { record?: { id: string }, old_record?: { id: string } })?.old_record?.id}`
 
     if (path) {
@@ -10,7 +11,7 @@ export async function POST(request: NextRequest) {
         return Response.json({ revalidated: true, now: Date.now() })
     }
 
-    return Response.json({
+    console.log({
         revalidated: false,
         now: Date.now(),
         message: 'Missing path to revalidate',
