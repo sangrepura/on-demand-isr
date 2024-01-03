@@ -3,15 +3,15 @@ import { NextRequest } from 'next/server'
 
 export async function POST(request: NextRequest) {
     const body = await request.json()
-    const path = `/${(body?.record?.id || body?.old_record?.id)}`
+    const path = `/${body?.record?.id || body?.old_record?.id}`
 
     if (path) {
         console.log('Revalidating path:', path)
-        revalidatePath("/")
+        revalidatePath(path)
         return Response.json({ revalidated: true, now: Date.now() })
     }
 
-    console.log({
+    return Response.json({
         revalidated: false,
         now: Date.now(),
         message: 'Missing path to revalidate',
