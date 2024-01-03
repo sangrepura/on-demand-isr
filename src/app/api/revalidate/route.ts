@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     const path = `/${body?.record?.id || body?.old_record?.id}`
 
     if (path) {
-        revalidatePath('/', 'layout')
+        //revalidatePath('/', 'layout')
         revalidatePath(path)
         return Response.json({ revalidated: true, time: Date.now(), body: body, path: path })
     }
