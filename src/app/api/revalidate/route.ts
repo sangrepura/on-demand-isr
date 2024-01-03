@@ -1,7 +1,7 @@
 import { revalidatePath } from 'next/cache'
 import { NextRequest } from 'next/server'
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
     const path = `/${(request.body as { record?: { id: string }, old_record?: { id: string } })?.record?.id || (request.body as { record?: { id: string }, old_record?: { id: string } })?.old_record?.id}`
 
     if (path) {
